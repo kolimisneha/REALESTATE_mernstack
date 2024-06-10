@@ -21,6 +21,7 @@ if (!process.env.MONGO) {
 // Create an Express application
 const app = express();
 
+
 // Middleware to parse JSON bodies and cookies
 app.use(express.json());
 app.use(cookieParser());
