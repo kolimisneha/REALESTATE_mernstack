@@ -23,8 +23,12 @@ if (!process.env.MONGO) {
 // Create an Express application
 const app = express();
 app.use(cors({
-  origin: 'https://realestate-mernstack-api-git-main-kolimisnehas-projects.vercel.app'
-}));
+  {
+  origin: ['https://realestate-mernstack-hxheidlbj-kolimisnehas-projects.vercel.app'],
+  methods:["POST,"GET]  ,
+  credentials:true
+}
+));
 
 
 
