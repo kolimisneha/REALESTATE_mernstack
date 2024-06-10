@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+
 // Import route handlers
 import userRouter from './routes/User.route.js';
 import authRouter from './routes/auth.route.js';
@@ -10,6 +11,12 @@ import listingRouter from './routes/listing.route.js';
 
 // Load environment variables from .env file
 dotenv.config();
+
+// Verify if environment variables are loaded correctly
+if (!process.env.MONGO) {
+  console.error('MONGO environment variable is not defined');
+  process.exit(1);
+}
 
 // Create an Express application
 const app = express();
@@ -21,12 +28,10 @@ app.use(cookieParser());
 // MongoDB connection
 const mongoURI = process.env.MONGO;
 mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000, // 5 seconds to connect to the database
-    socketTimeoutMS: 45000, // 45 seconds for socket inactivity
-    connectTimeoutMS: 10000, // 10 seconds to connect to the database
-    retryWrites: true, // Enable retry writes
+  serverSelectionTimeoutMS: 10000, // 10 seconds to connect to the database
+  socketTimeoutMS: 45000, // 45 seconds for socket inactivity
+  connectTimeoutMS: 30000, // 30 seconds to connect to the database
+  retryWrites: true, // Enable retry writes
 })
   .then(() => {
     console.log("Connected to MongoDB");
