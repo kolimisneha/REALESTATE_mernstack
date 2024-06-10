@@ -8,6 +8,8 @@ import path from 'path';
 import userRouter from './routes/User.route.js';
 import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
+import cors from 'cors';
+
 
 // Load environment variables from .env file
 dotenv.config();
