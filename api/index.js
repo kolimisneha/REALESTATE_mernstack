@@ -8,6 +8,8 @@ import path from 'path';
 import userRouter from './routes/User.route.js';
 import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
+import cors from 'cors';
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -20,6 +22,14 @@ if (!process.env.MONGO) {
 
 // Create an Express application
 const app = express();
+app.use(cors({
+  {
+  origin: ['https://realestate-mernstack-hxheidlbj-kolimisnehas-projects.vercel.app'],
+  methods:["POST,"GET]  ,
+  credentials:true
+}
+));
+
 
 
 // Middleware to parse JSON bodies and cookies
