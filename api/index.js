@@ -20,6 +20,10 @@ if (!process.env.MONGO) {
 
 // Create an Express application
 const app = express();
+app.use(cors({
+  origin: 'https://realestate-mernstack-api-git-main-kolimisnehas-projects.vercel.app'
+}));
+
 
 
 // Middleware to parse JSON bodies and cookies
